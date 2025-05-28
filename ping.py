@@ -5,43 +5,64 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
 SLACK_TOKEN = os.getenv("SLACK_BOT_TOKEN")
-CHANNEL_ID = "C08V10AVABS"  # Replace with your actual Slack channel ID
-MEMBERS = ["<@U0557BXF1B8>", "<@U06M0AMJF39>", "<@U027F58ADEV>"]  # Use Slack user IDs in this format
+DAILY_CHANNEL_ID = "C08V10AVABS"
+WEEKLY_CHANNEL_ID = "C987654321"
 
-STATE_FILE = "state.json"
+DAILY_MEMBERS = ["<@U0557BXF1B8>", "<@U06M0AMJF39>", "<@U027F58ADEV>"]  # Use Slack user IDs in this format
+WEEKLY_MEMBERS_MEMBERS = ["<@U0557BXF1B8>", "<@U06M0AMJF39>", "<@U027F58ADEV>", "<@U08B8PM8PJS>"]  # Use Slack user IDs in this format
 
-def load_state():
+# State Files
+DAILY_STATE_FILE = "state.json"
+WEEKLY_STATE_FILE = "weekly_state.json"
+
+def handle_rotation(client, members, state_file, channel_id, prefix):
+    # Load current index
     try:
-        with open(STATE_FILE) as f:
-            return json.load(f)
+        with open(state_file) as f:
+            state = json.load(f)
     except FileNotFoundError:
-        return {"index": 0}
+        state = {"index": 0}
 
-def save_state(index):
-    with open(STATE_FILE, "w") as f:
-        json.dump({"index": index}, f)
+    index = state["index"]
+    user = members[index]
+    message = f"{prefix} {user}!"
 
-def post_message(client, user):
-    message = f"🔔 It's your turn today, {user}!"
+    # Post message
     try:
-        client.chat_postMessage(channel=CHANNEL_ID, text=message)
-        print(f"Message sent: {message}")
+        client.chat_postMessage(channel=channel_id, text=message)
+        print(f"Message sent to {channel_id}: {message}")
     except SlackApiError as e:
-        print(f"Failed to send message: {e.response['error']}")
+        print(f"Error sending message to {channel_id}: {e.response['error']}")
+
+    # Save new index
+    next_index = (index + 1) % len(members)
+    with open(state_file, "w") as f:
+        json.dump({"index": next_index}, f)
 
 def main():
     if not SLACK_TOKEN:
         raise ValueError("Missing SLACK_BOT_TOKEN environment variable")
 
     client = WebClient(token=SLACK_TOKEN)
-    state = load_state()
-    index = state["index"]
-    user = MEMBERS[index]
 
-    post_message(client, user)
+    # Daily rotation - always run
+    handle_rotation(
+        client,
+        DAILY_MEMBERS,
+        DAILY_STATE_FILE,
+        DAILY_CHANNEL_ID,
+        "🔔 It's your turn today,"
+    )
 
-    next_index = (index + 1) % len(MEMBERS)
-    save_state(next_index)
+    # Weekly rotation - only on Mondays
+    if datetime.utcnow().weekday() == 0:  # Monday is 0
+        handle_rotation(
+            client,
+            WEEKLY_MEMBERS,
+            WEEKLY_STATE_FILE,
+            WEEKLY_CHANNEL_ID,
+            "📣 Weekly duty goes to"
+        )
 
 if __name__ == "__main__":
     main()
