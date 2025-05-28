@@ -5,8 +5,8 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
 SLACK_TOKEN = os.getenv("SLACK_BOT_TOKEN")
-CHANNEL_ID = "C0123456789"  # Replace with your actual Slack channel ID
-MEMBERS = ["<@U12345678>", "<@U23456789>", "<@U34567890>"]  # Use Slack user IDs in this format
+CHANNEL_ID = "C08V10AVABS"  # Replace with your actual Slack channel ID
+MEMBERS = ["<@U0557BXF1B8>", "<@U06M0AMJF39>", "<@U027F58ADEV>"]  # Use Slack user IDs in this format
 
 STATE_FILE = "state.json"
 
