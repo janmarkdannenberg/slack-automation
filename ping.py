@@ -52,7 +52,7 @@ def main():
         DAILY_MEMBERS,
         DAILY_STATE_FILE,
         DAILY_CHANNEL_ID,
-        "🔔 It's your turn today,"
+        "🔔 Chief Debugging Officer for today:"
     )
 
     # Weekly rotation - only on Mondays
@@ -62,7 +62,7 @@ def main():
             WEEKLY_MEMBERS,
             WEEKLY_STATE_FILE,
             WEEKLY_CHANNEL_ID,
-            "📣 Weekly duty goes to"
+            "📣 Manual bot runs duty goes to"
         )
 
 if __name__ == "__main__":
