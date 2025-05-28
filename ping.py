@@ -6,7 +6,7 @@ from slack_sdk.errors import SlackApiError
 
 SLACK_TOKEN = os.getenv("SLACK_BOT_TOKEN")
 DAILY_CHANNEL_ID = "C08V10AVABS"
-WEEKLY_CHANNEL_ID = "C987654321"
+WEEKLY_CHANNEL_ID = "C08UE9DCM8U"
 
 DAILY_MEMBERS = ["<@U0557BXF1B8>", "<@U06M0AMJF39>", "<@U027F58ADEV>"]  # Use Slack user IDs in this format
 WEEKLY_MEMBERS_MEMBERS = ["<@U0557BXF1B8>", "<@U06M0AMJF39>", "<@U027F58ADEV>", "<@U08B8PM8PJS>"]  # Use Slack user IDs in this format
