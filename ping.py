@@ -55,8 +55,9 @@ def main():
         "🔔 Chief Debugging Officer for today:"
     )
 
-    # Weekly rotation - only on Mondays
-    if datetime.utcnow().weekday() == 0:  # Monday is 0
+    # Weekly rotation - only on Wednesdays
+    # Wednesday = 2
+    if datetime.utcnow().weekday() == 2:
         handle_rotation(
             client,
             WEEKLY_MEMBERS,
