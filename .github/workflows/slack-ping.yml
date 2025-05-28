@@ -5,6 +5,9 @@ on:
     - cron: '0 9 * * *'  # Runs daily at 9:00 UTC
   workflow_dispatch:     # Allow manual triggering
 
+permissions:
+  contents: write
+
 jobs:
   slack-ping:
     runs-on: ubuntu-latest
