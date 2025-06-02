@@ -2,7 +2,7 @@ name: Daily Slack Ping
 
 on:
   schedule:
-    - cron: '0 7 * * 1-5'  # 07:00 UTC = 09:00 Amsterdam time (CET/CEST), Mon–Fri
+    - cron: '0 6 * * 1-5'  # 07:00 UTC = 09:00 Amsterdam time (CET/CEST), Mon–Fri
   workflow_dispatch:
 
 permissions:
