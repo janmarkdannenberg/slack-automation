@@ -36,6 +36,6 @@ jobs:
         run: |
           git config --global user.email "bot@example.com"
           git config --global user.name "SlackBot"
-          git add state.json
+          git add .
           git commit -m "Update state.json for next ping" || echo "No changes to commit"
           git push
