@@ -11,10 +11,12 @@ WEEKLY_CHANNEL_ID = "C08UE9DCM8U"
 
 # "<@U0557BXF1B8>" Jeroen
 # "<@U027F58ADEV>" JM
+# "<@U0A09H3QA7J>" Rebecca
+# "<@U06M0AMJF39>" Sten
 
 
-DAILY_MEMBERS = ["<@U06M0AMJF39>", "<@U027F58ADEV>", "<@U0557BXF1B8>", "<@U09DANVC725>"]  # Use Slack user IDs in this format
-WEEKLY_MEMBERS = ["<@U06M0AMJF39>", "<@U0557BXF1B8>", "<@U027F58ADEV>", "<@U09DANVC725>"]  # Use Slack user IDs in this format
+DAILY_MEMBERS = ["<@U06M0AMJF39>", "<@U0A09H3QA7J>", "<@U027F58ADEV>", "<@U0557BXF1B8>", "<@U09DANVC725>"]  # Use Slack user IDs in this format
+WEEKLY_MEMBERS = ["<@U06M0AMJF39>", "<@U0A09H3QA7J>", "<@U0557BXF1B8>", "<@U027F58ADEV>", "<@U09DANVC725>"]  # Use Slack user IDs in this format
 
 # State Files
 DAILY_STATE_FILE = "state.json"
